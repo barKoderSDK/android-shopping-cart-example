@@ -1,0 +1,9 @@
+com.barkoder
+attr flashEnabled
+attr forceLegacyCameraEnabled
+attr zoomFactor
+raw templates
+string bkd_btn_close
+string bkd_camera_permission_rationale_title
+string bkd_camera_permission_warning
+styleable BarkoderView flashEnabled forceLegacyCameraEnabled zoomFactor

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    
+    <item android:title="Home"
+        android:id="@+id/homeScreenFragment"
+        android:icon="@drawable/home_fill0_wght400_grad0_opsz48" />
+    <item android:title="Lists"
+        android:id="@+id/historyListFragment2"
+        android:icon="@drawable/list_icon"/>
+    <item
+        android:id="@+id/palcholder"
+        android:title=""/>
+
+    <item android:title="Products"
+        android:id="@+id/selectProductFragment"
+        android:icon="@drawable/icon_products"/>
+    <item android:title="Add"
+        android:id="@+id/addProductFragment"
+        android:icon = "@drawable/add_box"/>
+
+</menu>

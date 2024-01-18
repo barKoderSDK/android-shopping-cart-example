@@ -1,0 +1,578 @@
+{
+  "all": {
+    "decoder": {
+      "Aztec": {
+        "enabled": true
+      },
+      "Aztec Compact": {
+        "enabled": true
+      },
+      "QR": {
+        "enabled": true
+      },
+      "QR Micro": {
+        "enabled": true
+      },
+      "Code 128": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 93": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 39": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "Codabar": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 11": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "MSI": {
+        "enabled": true,
+        "minimumLength": 4,
+        "maximumLength": 0,
+        "checksum": 1
+      },
+      "Upc-A": {
+        "enabled": true
+      },
+      "Upc-E": {
+        "enabled": true
+      },
+      "Upc-E1": {
+        "enabled": true
+      },
+      "Ean-13": {
+        "enabled": true
+      },
+      "Ean-8": {
+        "enabled": true
+      },
+      "PDF 417": {
+        "enabled": true
+      },
+      "PDF 417 Micro": {
+        "enabled": true
+      },
+      "Datamatrix": {
+        "enabled": true
+      },
+      "general": {
+        "maxThreads": 2,
+        "decodingSpeed": 1,
+        "roi_x": 3,
+        "roi_y": 20,
+        "roi_w": 94,
+        "roi_h": 60,
+        "formattingType": 1,
+        "duplicatesDelayMs": 0,
+        "encodingCharacterSet": ""
+      }
+    },
+    "locationLineColor": -16711936,
+    "locationLineWidth": 4,
+    "roiLineColor": -65536,
+    "roiLineWidth": 3,
+    "roiOverlayBackgroundColor": 1711276032,
+    "closeSessionOnResultEnabled": true,
+    "imageResultEnabled": false,
+    "locationInImageResultEnabled": false,
+    "locationInPreviewEnabled": true,
+    "pinchToZoomEnabled": false,
+    "regionOfInterestVisible": true,
+    "barkoderResolution": 0
+  },
+  "pdf_optimized": {
+    "decoder": {
+      "Aztec": {
+        "enabled": false
+      },
+      "Aztec Compact": {
+        "enabled": false
+      },
+      "QR": {
+        "enabled": false
+      },
+      "QR Micro": {
+        "enabled": false
+      },
+      "Code 128": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 93": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 39": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "Codabar": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 11": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "MSI": {
+        "enabled": false,
+        "minimumLength": 4,
+        "maximumLength": 0,
+        "checksum": 1
+      },
+      "Upc-A": {
+        "enabled": false
+      },
+      "Upc-E": {
+        "enabled": false
+      },
+      "Upc-E1": {
+        "enabled": false
+      },
+      "Ean-13": {
+        "enabled": false
+      },
+      "Ean-8": {
+        "enabled": false
+      },
+      "PDF 417": {
+        "enabled": true
+      },
+      "PDF 417 Micro": {
+        "enabled": true
+      },
+      "Datamatrix": {
+        "enabled": false
+      },
+      "general": {
+        "maxThreads": 2,
+        "decodingSpeed": 1,
+        "roi_x": 3,
+        "roi_y": 20,
+        "roi_w": 94,
+        "roi_h": 60,
+        "formattingType": 3,
+        "duplicatesDelayMs": 0,
+        "encodingCharacterSet": ""
+      }
+    },
+    "locationLineColor": -16711936,
+    "locationLineWidth": 4,
+    "roiLineColor": -65536,
+    "roiLineWidth": 3,
+    "roiOverlayBackgroundColor": 1711276032,
+    "closeSessionOnResultEnabled": true,
+    "imageResultEnabled": false,
+    "locationInImageResultEnabled": false,
+    "locationInPreviewEnabled": true,
+    "pinchToZoomEnabled": false,
+    "regionOfInterestVisible": true,
+    "barkoderResolution": 0
+  },
+  "qr": {
+    "decoder": {
+      "Aztec": {
+        "enabled": false
+      },
+      "Aztec Compact": {
+        "enabled": false
+      },
+      "QR": {
+        "enabled": true
+      },
+      "QR Micro": {
+        "enabled": true
+      },
+      "Code 128": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 93": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 39": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "Codabar": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 11": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "MSI": {
+        "enabled": false,
+        "minimumLength": 4,
+        "maximumLength": 0,
+        "checksum": 1
+      },
+      "Upc-A": {
+        "enabled": false
+      },
+      "Upc-E": {
+        "enabled": false
+      },
+      "Upc-E1": {
+        "enabled": false
+      },
+      "Ean-13": {
+        "enabled": false
+      },
+      "Ean-8": {
+        "enabled": false
+      },
+      "PDF 417": {
+        "enabled": false
+      },
+      "PDF 417 Micro": {
+        "enabled": false
+      },
+      "Datamatrix": {
+        "enabled": false
+      },
+      "general": {
+        "maxThreads": 2,
+        "decodingSpeed": 1,
+        "roi_x": 3,
+        "roi_y": 20,
+        "roi_w": 94,
+        "roi_h": 60,
+        "formattingType": 2,
+        "duplicatesDelayMs": 0,
+        "encodingCharacterSet": ""
+      }
+    },
+    "locationLineColor": -16711936,
+    "locationLineWidth": 4,
+    "roiLineColor": -65536,
+    "roiLineWidth": 3,
+    "roiOverlayBackgroundColor": 1711276032,
+    "closeSessionOnResultEnabled": true,
+    "imageResultEnabled": false,
+    "locationInImageResultEnabled": false,
+    "locationInPreviewEnabled": true,
+    "pinchToZoomEnabled": false,
+    "regionOfInterestVisible": true,
+    "barkoderResolution": 0
+  },
+  "retail_1d": {
+    "decoder": {
+      "Aztec": {
+        "enabled": false
+      },
+      "Aztec Compact": {
+        "enabled": false
+      },
+      "QR": {
+        "enabled": false
+      },
+      "QR Micro": {
+        "enabled": false
+      },
+      "Code 128": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 93": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 39": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "Codabar": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 11": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "MSI": {
+        "enabled": false,
+        "minimumLength": 4,
+        "maximumLength": 0,
+        "checksum": 1
+      },
+      "Upc-A": {
+        "enabled": true
+      },
+      "Upc-E": {
+        "enabled": true
+      },
+      "Upc-E1": {
+        "enabled": true
+      },
+      "Ean-13": {
+        "enabled": true
+      },
+      "Ean-8": {
+        "enabled": true
+      },
+      "PDF 417": {
+        "enabled": false
+      },
+      "PDF 417 Micro": {
+        "enabled": false
+      },
+      "Datamatrix": {
+        "enabled": false
+      },
+      "general": {
+        "maxThreads": 2,
+        "decodingSpeed": 1,
+        "roi_x": 3,
+        "roi_y": 20,
+        "roi_w": 94,
+        "roi_h": 60,
+        "formattingType": 1,
+        "duplicatesDelayMs": 0,
+        "encodingCharacterSet": ""
+      }
+    },
+    "locationLineColor": -16711936,
+    "locationLineWidth": 4,
+    "roiLineColor": -65536,
+    "roiLineWidth": 3,
+    "roiOverlayBackgroundColor": 1711276032,
+    "closeSessionOnResultEnabled": true,
+    "imageResultEnabled": false,
+    "locationInImageResultEnabled": false,
+    "locationInPreviewEnabled": true,
+    "pinchToZoomEnabled": false,
+    "regionOfInterestVisible": true,
+    "barkoderResolution": 0
+  },
+  "industrial_1d": {
+    "decoder": {
+      "Aztec": {
+        "enabled": false
+      },
+      "Aztec Compact": {
+        "enabled": false
+      },
+      "QR": {
+        "enabled": false
+      },
+      "QR Micro": {
+        "enabled": false
+      },
+      "Code 128": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 93": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 39": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "Codabar": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 11": {
+        "enabled": true,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "MSI": {
+        "enabled": true,
+        "minimumLength": 4,
+        "maximumLength": 0,
+        "checksum": 1
+      },
+      "Upc-A": {
+        "enabled": false
+      },
+      "Upc-E": {
+        "enabled": false
+      },
+      "Upc-E1": {
+        "enabled": false
+      },
+      "Ean-13": {
+        "enabled": false
+      },
+      "Ean-8": {
+        "enabled": false
+      },
+      "PDF 417": {
+        "enabled": false
+      },
+      "PDF 417 Micro": {
+        "enabled": false
+      },
+      "Datamatrix": {
+        "enabled": false
+      },
+      "general": {
+        "maxThreads": 2,
+        "decodingSpeed": 1,
+        "roi_x": 3,
+        "roi_y": 20,
+        "roi_w": 94,
+        "roi_h": 60,
+        "formattingType": 1,
+        "duplicatesDelayMs": 0,
+        "encodingCharacterSet": ""
+      }
+    },
+    "locationLineColor": -16711936,
+    "locationLineWidth": 4,
+    "roiLineColor": -65536,
+    "roiLineWidth": 3,
+    "roiOverlayBackgroundColor": 1711276032,
+    "closeSessionOnResultEnabled": true,
+    "imageResultEnabled": false,
+    "locationInImageResultEnabled": false,
+    "locationInPreviewEnabled": true,
+    "pinchToZoomEnabled": false,
+    "regionOfInterestVisible": true,
+    "barkoderResolution": 0
+  },
+  "all_2d": {
+    "decoder": {
+      "Aztec": {
+        "enabled": true
+      },
+      "Aztec Compact": {
+        "enabled": true
+      },
+      "QR": {
+        "enabled": true
+      },
+      "QR Micro": {
+        "enabled": true
+      },
+      "Code 128": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 93": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 39": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "Codabar": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0
+      },
+      "Code 11": {
+        "enabled": false,
+        "minimumLength": 0,
+        "maximumLength": 0,
+        "checksum": 0
+      },
+      "MSI": {
+        "enabled": false,
+        "minimumLength": 4,
+        "maximumLength": 0,
+        "checksum": 1
+      },
+      "Upc-A": {
+        "enabled": false
+      },
+      "Upc-E": {
+        "enabled": false
+      },
+      "Upc-E1": {
+        "enabled": false
+      },
+      "Ean-13": {
+        "enabled": false
+      },
+      "Ean-8": {
+        "enabled": false
+      },
+      "PDF 417": {
+        "enabled": false
+      },
+      "PDF 417 Micro": {
+        "enabled": false
+      },
+      "Datamatrix": {
+        "enabled": true
+      },
+      "general": {
+        "maxThreads": 2,
+        "decodingSpeed": 1,
+        "roi_x": 3,
+        "roi_y": 20,
+        "roi_w": 94,
+        "roi_h": 60,
+        "formattingType": 1,
+        "duplicatesDelayMs": 0,
+        "encodingCharacterSet": ""
+      }
+    },
+    "locationLineColor": -16711936,
+    "locationLineWidth": 4,
+    "roiLineColor": -65536,
+    "roiLineWidth": 3,
+    "roiOverlayBackgroundColor": 1711276032,
+    "closeSessionOnResultEnabled": true,
+    "imageResultEnabled": false,
+    "locationInImageResultEnabled": false,
+    "locationInPreviewEnabled": true,
+    "pinchToZoomEnabled": false,
+    "regionOfInterestVisible": true,
+    "barkoderResolution": 0
+  }
+}

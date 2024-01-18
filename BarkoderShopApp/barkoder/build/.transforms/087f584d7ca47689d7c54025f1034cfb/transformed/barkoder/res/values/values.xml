@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bkd_btn_close">Close</string>
+    <string name="bkd_camera_permission_rationale_title">Please enable camera permission in order to use scanning feature</string>
+    <string name="bkd_camera_permission_warning">Camera permission is needed in order to use scanning feature</string>
+    <declare-styleable name="BarkoderView">
+        <attr format="float" name="zoomFactor"/>
+        <attr format="boolean" name="flashEnabled"/>
+        <attr format="boolean" name="forceLegacyCameraEnabled"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BarkoderShopApp</string>
+    <string name="result_title">Barcoder</string>
+    <string name="hello_blank_fragment">hh</string>
+    <string name="dialog_update">Листата е успешно адаптирана</string>
+    <string name="listName_empty_dialog">Името на Листата е Празно</string>
+    <string name="alert_dialog_back">Ако се вратиш назад листата ке биде избришана</string>
+    <string name="alert_title_list_save">Листа Заѓ</string>
+    <string name="alert_title_list_save_positive">Добро</string>
+    <string name="alert_title_list_save_negative">Остани</string>
+    <string name="toast_list_secesfful_created">Листата е успешно креирана</string>
+    <string name="toast_list_name_empty">Името на Листата е празно</string>
+    <string name="history_list_not_checeked_yet">Нецекирано</string>
+    <string name="toast_list_sucessful_updated">Листата е успешно променета</string>
+    <string name="open_nav">отвори нав</string>
+    <string name="close_nav">затвори нав</string>
+    <string name="languages">Јазици</string>
+    <string name="speech_prompt">qeqw</string>
+    <string name="speech_not_supported">qwe</string>
+    <string name="add">Додај</string>
+    <string name="quantity">Квантитет</string>
+    <string name="price">Цена</string>
+    <string name="unit">Мерка</string>
+    <string name="barcode">Баркод</string>
+    <string name="productName">Име на Производ</string>
+    <string name="takePhoto">Фотографирај</string>
+    <string name="createProduct">Креирај Продукт</string>
+    <string name="products">производи</string>
+    <string name="recentProducts">Неодамнешни Производи</string>
+    <string name="recentLists">Неодамнешни Листи</string>
+    <string name="listName">Име на Листа</string>
+    <string name="unchecked">Нештиклирано!</string>
+    <string name="homeScreen">Почетна Страна</string>
+    <string name="myLists">Мои Листи</string>
+    <string name="myProducts">Мои Производи</string>
+    <string name="createList">Креирај Листа</string>
+    <string name="updateList">Промени Листа</string>
+    <string name="productCreated">Производот е успешно креиран</string>
+    <string name="fieldsEmpty">Сите полињата мора да бидат пополнети!</string>
+    <string name="deleteProduct">Избриши производ</string>
+    <string name="deleteProductDialog">Сигурни сте дека сакате да го избришете Производот?</string>
+    <string name="cancel">Откажете</string>
+    <string name="deleteList">Избриши Листа</string>
+    <string name="deleteListDialog">Сигурни сте дека сакате да ја избришете Листата?</string>
+    <string name="restoreList">Ресетирај Листа</string>
+    <string name="restoreListDialog">Сигурни сте дека сакате да ја ресетирате Листата?</string>
+    <string name="yes">Да</string>
+    <string name="updateProduct">Промени Производ</string>
+    <string name="delete">Избриши</string>
+    <string name="update">Промени</string>
+
+</resources>

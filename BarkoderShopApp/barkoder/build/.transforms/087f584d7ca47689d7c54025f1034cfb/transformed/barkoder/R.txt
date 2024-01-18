@@ -1,0 +1,11 @@
+int attr flashEnabled 0x0
+int attr forceLegacyCameraEnabled 0x0
+int attr zoomFactor 0x0
+int raw templates 0x0
+int string bkd_btn_close 0x0
+int string bkd_camera_permission_rationale_title 0x0
+int string bkd_camera_permission_warning 0x0
+int[] styleable BarkoderView { 0x0, 0x0, 0x0 }
+int styleable BarkoderView_flashEnabled 0
+int styleable BarkoderView_forceLegacyCameraEnabled 1
+int styleable BarkoderView_zoomFactor 2

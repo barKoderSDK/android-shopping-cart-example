@@ -1,0 +1,28 @@
+# Preserve the line number information for debugging stack traces.
+-keepattributes SourceFile,LineNumberTable,Exceptions,InnerClasses
+
+# If you keep the line number information, uncomment this to hide the original source file name.
+-renamesourcefileattribute SourceFile
+
+-keep public enum com.barkoder.enums.BarkoderConfigTemplate, com.barkoder.enums.BarkoderResolution {
+    public <fields>;
+}
+
+-keep public interface * {
+    public <methods>;
+}
+
+-keep public class com.barkoder.BarkoderView, com.barkoder.BarkoderHelper,
+                   com.barkoder.exceptions.BarkoderException, com.barkoder.BarkoderConfig {
+    public <methods>;
+    public <fields>;
+}
+
+#Keep Barkoder completely because of the JNI wrapper. Chaning property names can cause problems
+-keep public class com.barkoder.Barkoder {
+    *;
+}
+
+-keep public class com.barkoder.Barkoder$** {
+    *;
+}

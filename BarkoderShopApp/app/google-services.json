@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "28669994140",
+    "firebase_url": "https://barkodershopapp-default-rtdb.firebaseio.com",
+    "project_id": "barkodershopapp",
+    "storage_bucket": "barkodershopapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28669994140:android:b1268ab911da9fb92eb959",
+        "android_client_info": {
+          "package_name": "com.barkoder.shoppingApp.net"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28669994140-rf6b4qked3c6403hl2et6gqqs5ek8tih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.barkodershopapp",
+            "certificate_hash": "44501bb1c1887632f81f0dfecd68224aa483787f"
+          }
+        },
+        {
+          "client_id": "28669994140-bl9461ev1c63vm5olr50ur7m3mulmcpf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzW9wAfbpHe6oYB42aF-fUj2Sfq8PUUAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28669994140-bcfvu00232t6j2nqjd0q9fnok5i5qrt4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
