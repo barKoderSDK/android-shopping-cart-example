@@ -2,9 +2,11 @@
 
 ## Overview
 
-“Barkoder Shopping Cart” is an Android application that utilizes the [barKoder Barcode Scanner SDK](https://barkoder.com/barcode-scanner-sdk) to enable users to create and manage product lists efficiently. The application allows users to create products, organize them into lists, and use the barcode scanner to quickly check items off their lists.
+“Barkoder Shopping Cart” is an Android application that utilizes the [barKoder Barcode Scanner SDK](https://barkoder.com/barcode-scanner-sdk) to enable users to create and manage product lists efficiently. The application allows users to create products, organize them into lists, and use the barcode scanner to quickly check items off their lists. 
 
-## [barKoder Barcode Scanner SDK](https://barkoder.com/barcode-scanner-sdk)
+**This app is for demonstration and evaluation purposes of the barKoder SDK. It's not inteded as a production app, rather as a quick-start how-to for the android platform.**
+
+### [barKoder Barcode Scanner SDK](https://barkoder.com/barcode-scanner-sdk)
 
 The barKoder Barcode Scanner SDK grants an easy to use solution with a great and completely customizable interface that can be instantly integrated in both iOS and Android apps.
 
@@ -25,11 +27,22 @@ The [barKoder SDK](https://barkoder.com/) features multiple algorithms that hand
 
 You can check out our free demo app Barcode Scanner by barKoder available both via [Apple App Store](https://apps.apple.com/us/app/barkoder-scanner/id6443715409?uo=2) & [Google Play Store](https://play.google.com/store/apps/details?id=com.barkoder.demoscanner).
 
-You can check and install our android [barKoder Barcode Scanner SDK](https://github.com/barKoderSDK/android-sdk) via Github.
+Our SDK is available for varoioius platforms and frameworks. We currently support:
 
-## Free Developer Support
+- Android
+- iOS
+- Flutter
+- React Native
+- Capacitor
+- Xamarin
 
-Our support is completely free for integration or testing purposes and granted through the [barKoder Portal](https://barkoder.com/login). After registering and logging into your account, you only need to submit a [Support Issue](https://barkoder.com/issues) form. Alternatively, you can contact us by email via support@barkoder.com.
+You can find any of these at one place [here](https://barkoder.com/repository), and by [registering on our portal](https://barkoder.com/register) you can get access to trial licenses, production licenses and 24/7 support for integration.
+Alternatively you can download the android-sdk from [barKoder Android Barcode Scanner SDK](https://github.com/barKoderSDK/android-sdk) via Github.
+Also you can check other code we have hosted [here](https://barkoder.com/barKoderSDK)
+
+### Free Developer Support
+
+As mentioned, our support is completely free for integration or testing purposes and granted through the [barKoder Portal](https://barkoder.com/login). After registering and logging into your account, you only need to submit a [Support Issue](https://barkoder.com/issues). Alternatively, you can contact us by email via support@barkoder.com.
 
 ## Features
 
