@@ -25,6 +25,8 @@ The [barKoder SDK](https://barkoder.com/) features multiple algorithms that hand
 
 You can check out our free demo app Barcode Scanner by barKoder available both via [Apple App Store](https://apps.apple.com/us/app/barkoder-scanner/id6443715409?uo=2) & [Google Play Store](https://play.google.com/store/apps/details?id=com.barkoder.demoscanner).
 
+You can check and install our android [barKoder Barcode Scanner SDK](https://github.com/barKoderSDK/android-sdk) via Github.
+
 ## Free Developer Support
 
 Our support is completely free for integration or testing purposes and granted through the [barKoder Portal](https://barkoder.com/login). After registering and logging into your account, you only need to submit a [Support Issue](https://barkoder.com/issues) form. Alternatively, you can contact us by email via support@barkoder.com.
@@ -39,6 +41,8 @@ Our support is completely free for integration or testing purposes and granted t
 
 Prerequisites
 Android Studio installed
+
+[Android Studio Download](https://developer.android.com/studio?gclid=Cj0KCQiAtaOtBhCwARIsAN_x-3IkKiAwpKoA9dZYWAjvum_-6tuKIIkKDg5ryev0EMIZZ0cFKr4y_6QaAhYpEALw_wcB&gclsrc=aw.ds)
 
 ### Installation
 1. Clone the repository.
