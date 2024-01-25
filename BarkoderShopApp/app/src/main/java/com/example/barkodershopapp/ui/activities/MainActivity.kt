@@ -23,10 +23,12 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.barkoder.shoppingApp.net.R
 import com.barkoder.shoppingApp.net.databinding.ActivityMainBinding
@@ -62,13 +64,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toolBar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolBarrr)
         setSupportActionBar(toolBar)
 
-        toolBar.setOnMenuItemClickListener { menuItem ->
-            when(menuItem.itemId){
-                R.id.micIcon -> promptSpeechInput()
-            }
-            true
-        }
-
 
 //        val navigationView = binding.drawerView
 //        navigationView.setNavigationItemSelectedListener(this)
@@ -97,6 +92,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         bottomNavigationView.setupWithNavController(navController!!)
         bottomNavigationView.selectedItemId = R.id.homeScreenFragment
+
+        toolBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId){
+                R.id.searchIcon -> promptSpeechInput()
+                R.id.addIcon -> {
+                    if(bottomNavigationView.selectedItemId == R.id.historyListFragment2) {
+                        navController!!.navigate(
+                            R.id.listProductsFragment,
+                            null,
+                            NavOptions.Builder().setPopUpTo(R.id.historyListFragment2, true).build()
+                        )
+                        listViewModel.delete()
+                    }
+                    else if (bottomNavigationView.selectedItemId == R.id.selectProductFragment) {
+                        navController!!.navigate(
+                            R.id.addProductFragment,
+                            null,
+                            NavOptions.Builder().setPopUpTo(R.id.selectProductFragment, true).build()
+                        )
+                    }
+                }
+            }
+            true
+        }
 
     }
 

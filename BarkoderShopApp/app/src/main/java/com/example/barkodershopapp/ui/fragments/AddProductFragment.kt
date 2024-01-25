@@ -1,24 +1,35 @@
 package com.example.barkodershopapp.ui.fragments
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
+import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.VectorDrawable
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.speech.RecognizerIntent
+import android.util.DisplayMetrics
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -27,6 +38,7 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import com.barkoder.shoppingApp.net.R
 import com.barkoder.shoppingApp.net.databinding.FragmentAddProductBinding
+import com.example.barkodershopapp.data.db.imagedb.imageOriginal
 import com.example.barkodershopapp.data.db.pricedb.PriceHistory
 import com.example.barkodershopapp.data.db.productdatabase.ProductDataEntity
 import com.example.barkodershopapp.ui.viewmodels.ProductViewModel
@@ -34,6 +46,7 @@ import com.example.barkodershopapp.ui.typeconverters.TypeConverterss
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -48,6 +61,16 @@ class AddProductFragment : Fragment() {
     private val REQ_CODE_SPEECH_INPUT = 100
     private var btnScan : FloatingActionButton? = null
     private var imageProduct : Bitmap? = null
+    private var imageUri : Uri? = null
+    private var imagePath : String? = null
+    private var thumbnail : Bitmap? = null
+
+    private val writeStoragePermission by lazy {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) {
+            Manifest.permission.READ_MEDIA_IMAGES
+        } else
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +86,9 @@ class AddProductFragment : Fragment() {
         val activity = requireActivity() as AppCompatActivity
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         activity.supportActionBar?.setDisplayShowHomeEnabled(false)
+
+        val toolbar = (activity as? AppCompatActivity)?.findViewById<Toolbar>(R.id.toolBarrr)
+        toolbar?.visibility = View.GONE
 
         savedInstanceState?.let { savedState ->
             binding.editTextNameAddProduct.setText(savedState.getString("textName"))
@@ -83,9 +109,15 @@ class AddProductFragment : Fragment() {
         onClickScan()
         onCLickScanFab()
         onBackButton()
+        var widthScreen = getScreenWidth(requireContext())
+        var prr = widthScreen / 4
 
-        if(imageProduct != null) {
-            onPhotoCaptured(imageProduct!!)
+        val layoutParams = binding.cameraImage.layoutParams
+        layoutParams.height = widthScreen + prr
+        binding.cameraImage.layoutParams = layoutParams
+
+        if(thumbnail != null) {
+            onPhotoCaptured(thumbnail!!)
             binding.cameraImage.load(productViewModel.capturedPhotoBitmap)
         }
 
@@ -158,6 +190,7 @@ class AddProductFragment : Fragment() {
 
     }
     private fun onClickAdd() {
+
         val currentAddProduct = ProductDataEntity(
             "productName",
             "productBarcode",
@@ -171,7 +204,8 @@ class AddProductFragment : Fragment() {
             0,
             arrayListOf(),
             0,
-            false
+            false,
+            arrayListOf()
         )
         binding.btnAddProductToList.setOnClickListener {
             var productName = binding.editTextNameAddProduct.text.toString()
@@ -196,38 +230,40 @@ class AddProductFragment : Fragment() {
                     currentAddProduct.defultCount = 0
                     currentAddProduct.count = 1
                     currentAddProduct.priceHistory = arrayListOf(PriceHistory(currentAddProduct.priceProduct.toString() + " $", getCurrentDate(), R.drawable.edit_fill0_wght400_grad0_opsz48))
+                    currentAddProduct.originalImage = arrayListOf(imageOriginal(imagePath!!))
 
 
-
-                    val drawable = productImage.drawable
-                    val imageData = when (drawable) {
-                        is BitmapDrawable -> {
-                            val bitmap = drawable.bitmap
-                            TypeConverterss.fromBitmap(bitmap)
-                        }
-                        is VectorDrawable -> {
-                            val bitmap = Bitmap.createBitmap(
-                                drawable.intrinsicWidth,
-                                drawable.intrinsicHeight,
-                                Bitmap.Config.ARGB_8888
-                            )
-                            val canvas = Canvas(bitmap)
-                            drawable.setBounds(0, 0, canvas.width, canvas.height)
-                            drawable.draw(canvas)
-                            TypeConverterss.fromBitmap(bitmap)
-                        }
-                        else -> {
-
-                            val defaultImage = requireContext().resources.getDrawable(
-                                R.drawable.photo_camera,
-                                null
-                            ) as BitmapDrawable
-                            val defaultImageByteArray =
-                                TypeConverterss.fromBitmap(defaultImage.bitmap)
-                            defaultImageByteArray
-                        }
-                    }
-                    currentAddProduct.imageProduct = imageData
+//                    val drawable = productImage.drawable
+//                    val imageData = when (drawable) {
+//                        is BitmapDrawable -> {
+//                            val bitmap = drawable.bitmap
+//                            TypeConverterss.fromBitmap(bitmap)
+//                        }
+//                        is VectorDrawable -> {
+//                            val bitmap = Bitmap.createBitmap(
+//                                drawable.intrinsicWidth,
+//                                drawable.intrinsicHeight,
+//                                Bitmap.Config.ARGB_8888
+//                            )
+//                            val canvas = Canvas(bitmap)
+//                            drawable.setBounds(0, 0, canvas.width, canvas.height)
+//                            drawable.draw(canvas)
+//                            TypeConverterss.fromBitmap(bitmap)
+//                        }
+//                        else -> {
+//
+//                            val defaultImage = requireContext().resources.getDrawable(
+//                                R.drawable.photo_camera,
+//                                null
+//                            ) as BitmapDrawable
+//                            val defaultImageByteArray =
+//                                TypeConverterss.fromBitmap(defaultImage.bitmap)
+//                            defaultImageByteArray
+//                        }
+//                    }
+                    var byteArrayImage = bitmapToByteArray(imageProduct!!)
+                    currentAddProduct.imageProduct = byteArrayImage
+//                    Log.d("path", path!!)
 
                     productViewModel.insert(currentAddProduct)
 
@@ -255,7 +291,7 @@ class AddProductFragment : Fragment() {
 
     private fun onClickAddImage() {
         binding.addImage.setOnClickListener {
-            if (checkCameraPermission()) {
+            if (checkCameraPermission() && checkReadImagesPermission()) {
                 camera()
             } else {
                 requestCameraPermission()
@@ -278,9 +314,10 @@ class AddProductFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 cameraRequest -> {
-                    imageProduct = data?.extras?.get("data") as Bitmap
-                    val bitmapScaled = Bitmap.createScaledBitmap(imageProduct!!, 150, 180, true)
-                    binding.cameraImage.load(imageProduct)
+                    thumbnail = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, imageUri)
+//                    imageView.setImageBitmap(thumbnail)
+                    imageProduct = Bitmap.createScaledBitmap(thumbnail!!, 150, 150, true)
+                    binding.cameraImage.load(thumbnail)
 
 
                 }
@@ -289,8 +326,9 @@ class AddProductFragment : Fragment() {
     }
 
     private fun camera() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, cameraRequest)
+//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        startActivityForResult(intent, cameraRequest)
+        captureFromCamera()
     }
 
     private fun checkCameraPermission(): Boolean {
@@ -300,9 +338,16 @@ class AddProductFragment : Fragment() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
+    private fun checkReadImagesPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            requireContext(),
+            writeStoragePermission,
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
     private fun requestCameraPermission() {
         requestPermissions(
-            arrayOf(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE),
+            arrayOf(Manifest.permission.CAMERA, writeStoragePermission),
             cameraRequest
         )
     }
@@ -372,5 +417,49 @@ class AddProductFragment : Fragment() {
         callback = null
     }
 
+    private fun captureFromCamera() {
+        val values = ContentValues()
+        imageUri = requireContext().contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)!!
+        imagePath = imageUri?.let { it1 -> getPathFromUri(requireContext(), it1) }
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+        startActivityForResult(intent, 1)
+    }
+
+    @SuppressLint("Recycle")
+    fun getPathFromUri(context: Context, uri: Uri): String? {
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        var cursor: Cursor? = null
+
+        try {
+            cursor = context.contentResolver.query(uri, projection, null, null, null)
+            cursor?.let {
+                val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                it.moveToFirst()
+                return it.getString(columnIndex)
+            }
+        } catch (e: Exception) {
+            Log.e("getPathFromUri", "Error getting path from uri: $e")
+        } finally {
+            cursor?.close()
+        }
+
+        return null
+    }
+
+    fun bitmapToByteArray(bitmap: Bitmap, format: Bitmap.CompressFormat = Bitmap.CompressFormat.PNG, quality: Int = 50): ByteArray {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(format, quality, stream)
+        return stream.toByteArray()
+    }
+
+    fun getScreenWidth(context: Context): Int {
+        val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val displayMetrics = DisplayMetrics()
+
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        return displayMetrics.widthPixels
+    }
 
 }

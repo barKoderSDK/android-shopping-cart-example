@@ -77,7 +77,6 @@
             app:backgroundTint="#FDD835"
             app:fabCustomSize="45dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/startList"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline29"
             app:maxImageSize="20dp" />

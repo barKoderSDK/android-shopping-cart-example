@@ -1,5 +1,7 @@
 package com.example.barkodershopapp.ui.adapters
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +35,8 @@ private val listener : OnCheckedListener) : RecyclerView.Adapter<CurrentListAdap
             binding.textScannedCount.text = list.listProducts.defultCount.toString()
             binding.textProductTotalPrice.text = list.listProducts.totalPrice.toString()
             binding.textView12.text = list.listProducts.count.toString()
+//            val bitmap: Bitmap = BitmapFactory.decodeFile(list.listProducts.imageProduct!!)
+
             val byteArray = list.listProducts.imageProduct?.let { TypeConverterss.toBitmap(it) }
             binding.imageProduct2.load(byteArray) {
                 crossfade(true)

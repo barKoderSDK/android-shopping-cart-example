@@ -100,28 +100,29 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recViewCurentyProducts"
             android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:background="@drawable/rounded_bg"
+            android:layout_height="141dp"
+            android:background="@color/backroundDesignColor"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/guideline6"
             tools:listitem="@layout/home_product_list" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnCreateProduct"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Product"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toBottomOf="@+id/recViewCurentyProducts" />
+            android:layout_marginEnd="15dp"
+            android:background="@color/backroundDesignColor"
+            android:src="@drawable/add_nav_icon"
+            app:layout_constraintBottom_toTopOf="@+id/recViewCurentyProducts"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recViewCurrentlyLists"
             android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:background="@drawable/rounded_bg"
+            android:layout_height="141dp"
+            android:background="@color/backroundDesignColor"
             app:layout_constraintBottom_toTopOf="@+id/guideline9"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -129,14 +130,15 @@
             app:layout_constraintVertical_bias="0.502"
             tools:listitem="@layout/home_list_list" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnCreateList"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create List"
-            android:textAllCaps="false"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toBottomOf="@+id/recViewCurrentlyLists" />
+            android:layout_marginEnd="15dp"
+            android:background="@color/backroundDesignColor"
+            android:src="@drawable/add_nav_icon"
+            app:layout_constraintBottom_toTopOf="@+id/recViewCurrentlyLists"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4" />
 
         <TextView
             android:id="@+id/textView5"

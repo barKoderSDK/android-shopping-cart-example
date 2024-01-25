@@ -1,5 +1,7 @@
 package com.example.barkodershopapp.ui.adapters
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filterable
@@ -40,7 +42,7 @@ class HomeProductAdapter (private var list: ArrayList<ProductDataEntity>,
         fun bind(list: ProductDataEntity) {
             binding.productNameHome.text = list.nameProduct
             binding.productBarcodeHome.text = list.barcodeProduct
-
+//            val bitmap: Bitmap = BitmapFactory.decodeFile("/storage/emulated/0/Pictures/1706025962555")
             val byteArray = list.imageProduct?.let { TypeConverterss.toBitmap(it) }
             binding.imageSelectProduct2.load(byteArray) {
                 crossfade(true)

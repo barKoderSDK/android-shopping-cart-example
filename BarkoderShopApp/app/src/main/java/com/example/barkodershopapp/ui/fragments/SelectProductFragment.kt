@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.viewModels
@@ -45,6 +46,8 @@ class SelectProductFragment : Fragment() {
     var productS = ArrayList<ProductDataEntity>()
     private var btnScan : FloatingActionButton? = null
     private var callback: OnBackPressedCallback? = null
+    private var product : ProductDataEntity? = null
+    private var addedProducst : ArrayList<ProductDataEntity>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +56,8 @@ class SelectProductFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentSelectProductBinding.inflate(inflater, container, false)
 
-
+        val toolbar = (activity as? AppCompatActivity)?.findViewById<Toolbar>(R.id.toolBarrr)
+        toolbar?.visibility = View.VISIBLE
 
 
         val view = binding.root
@@ -63,7 +67,7 @@ class SelectProductFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        addedProducst = ArrayList<ProductDataEntity>()
         setupRecView()
         onCLickScan()
         observeList()
@@ -223,8 +227,9 @@ class SelectProductFragment : Fragment() {
 
     private var listener = object : onClickAddProduct {
         override fun onAdedProduct(list: ProductDataEntity) {
-            list.adedProduct = true
-            productViewModel.updateItem(list)
+            product = list
+            product!!.adedProduct = true
+            addedProducst!!.add(list)
         }
 
     }
@@ -302,7 +307,11 @@ class SelectProductFragment : Fragment() {
                 } else {
                     bundle.putBoolean("editMode", false)
                 }
-
+                for(i in addedProducst!!) {
+                    if(addedProducst!!.isNotEmpty()) {
+                        productViewModel.updateItem(i)
+                    }
+                }
                 findNavController().navigate(
                     R.id.listProductsFragment,
                     bundle,

@@ -53,6 +53,8 @@ class ListProductsFragment : Fragment() {
     private val productViewModel : ProductViewModel by viewModels()
     private val productL = arrayListOf<ListDataEntity>()
     var editMode = this@ListProductsFragment.arguments?.getBoolean("editMode")
+    private var updatedProduct : ListDataEntity? = null
+    private var totalPrice : Int? = null
 
 
     private lateinit var callback: OnBackPressedCallback
@@ -65,10 +67,7 @@ class ListProductsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentListProductsBinding.inflate(inflater, container, false)
-        setupRecView()
-        observeList()
-        onBackButton()
-        checkAdedProduct()
+
 
 
         val activity = requireActivity() as AppCompatActivity
@@ -83,6 +82,10 @@ class ListProductsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecView()
+        observeList()
+        onBackButton()
+        checkAdedProduct()
         editMode()
         onClickButtonAdd()
         onClickButtonUpdate()
@@ -317,6 +320,7 @@ class ListProductsFragment : Fragment() {
         listViewModel.allNotes.observe(viewLifecycleOwner, { products ->
                 productAdapter!!.setNotesList(products as ArrayList<ListDataEntity>)
                 binding.textTotalCostList.text = sumTotalCostList(products).toString() + " $"
+                totalPrice = sumTotalCostList(products)
                 binding.textSizeProducstsList.text = products.size.toString()
                 binding.progressBar2.visibility = View.GONE
 
@@ -362,7 +366,7 @@ class ListProductsFragment : Fragment() {
     private fun onBackButton(){
         callback = object : OnBackPressedCallback(true ) {
             override fun handleOnBackPressed() {
-
+                listViewModel.delete()
                 productViewModel.allNotes.observe(viewLifecycleOwner, { products ->
                     var array = products as ArrayList<ProductDataEntity>
                     for(i in array.indices){
@@ -377,7 +381,7 @@ class ListProductsFragment : Fragment() {
                     null,
                     NavOptions.Builder().setPopUpTo(R.id.listProductsFragment, true).build()
                 )
-                listViewModel.delete()
+
 
             }
         }
@@ -390,7 +394,10 @@ class ListProductsFragment : Fragment() {
             list.listProducts.count++
             list.listProducts.totalPrice =
                 list.listProducts.totalPrice + list.listProducts.priceProduct
-            listViewModel.updateItem(list)
+            totalPrice = totalPrice?.plus(list.listProducts.priceProduct)
+            binding.textTotalCostList.text = "${totalPrice.toString()} $"
+            updatedProduct = list
+//            listViewModel.updateItem(list)
         }
 
         override fun onClickMinus(list: ListDataEntity) {
@@ -398,15 +405,20 @@ class ListProductsFragment : Fragment() {
                 list.listProducts.count--
                 list.listProducts.totalPrice =
                     list.listProducts.totalPrice - list.listProducts.priceProduct
+                totalPrice = totalPrice?.minus(list.listProducts.priceProduct)
+                binding.textTotalCostList.text = "${totalPrice.toString()} $"
+                updatedProduct = list
             }
-            listViewModel.updateItem(list)
+//            listViewModel.updateItem(list)
         }
     }
 
 
     override fun onPause() {
         super.onPause()
-
+        if(updatedProduct != null) {
+            listViewModel.updateItem(updatedProduct!!)
+        }
         var bottomNav = requireActivity().findViewById<BottomAppBar>(R.id.bottomNavigationApp)
         bottomNav.visibility = View.VISIBLE
         var bottomFab = requireActivity().findViewById<FloatingActionButton>(R.id.fabNav)
@@ -418,6 +430,5 @@ class ListProductsFragment : Fragment() {
         _binding = null
         productAdapter = null
     }
-
 
 }

@@ -117,6 +117,7 @@
         android:layout_width="67dp"
         android:layout_height="13dp"
         android:layout_marginEnd="20dp"
+        android:visibility="invisible"
         android:text="12/232/423"
         android:textColor="@color/productInfo"
         android:textSize="12sp"
@@ -129,6 +130,7 @@
         android:id="@+id/imageChecked"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
         app:layout_constraintStart_toStartOf="@+id/guideline32"
@@ -140,10 +142,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:visibility="invisible"
         android:textColor="@color/productInfo"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintEnd_toStartOf="@+id/guideline32"
         app:layout_constraintStart_toStartOf="@+id/guideline33"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline32"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/keyboard_arrow_right_fill0_wght400_grad0_opsz48" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

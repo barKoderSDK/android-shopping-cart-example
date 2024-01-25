@@ -11,14 +11,16 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.barkoder.shoppingApp.net.R
+import com.example.barkodershopapp.data.db.imagedb.imageOriginal
 import com.example.barkodershopapp.data.db.pricedb.PriceHistory
 import com.example.barkodershopapp.ui.typeconverters.PriceHistoryConverter
+import com.example.barkodershopapp.ui.typeconverters.imageConverter
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
 @Parcelize
 @Entity(tableName = "product_table")
-@TypeConverters(PriceHistoryConverter::class)
+@TypeConverters(PriceHistoryConverter::class, imageConverter::class)
 data class ProductDataEntity (
 
     @ColumnInfo(name = "Name Product")
@@ -47,6 +49,8 @@ data class ProductDataEntity (
     var defultCount : Int,
     @ColumnInfo(name ="aded_prdouct")
     var adedProduct : Boolean = false,
+    @ColumnInfo(name= "original_image")
+    var originalImage : @RawValue ArrayList<imageOriginal>,
     @PrimaryKey(autoGenerate = true)
     var id : Long = 0L
 

@@ -10,10 +10,15 @@ import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.viewModels
@@ -58,23 +63,16 @@ class HistoryListFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHistoryListBinding.inflate(inflater, container, false)
         requireActivity().title = requireContext().getString(R.string.myLists)
-        try {
-            val field: Field = CursorWindow::class.java.getDeclaredField("sCursorWindowSize")
-            field.setAccessible(true)
-            field.set(null, 100 * 1024 * 1024) //the 100MB is the new size
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
 
         setupRecView()
         observeList()
-        onClickNewList()
         onBackButton()
 
         val activity = requireActivity() as AppCompatActivity
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         activity.supportActionBar?.setDisplayShowHomeEnabled(false)
-
+        val toolbar = (activity as? AppCompatActivity)?.findViewById<Toolbar>(R.id.toolBarrr)
+        toolbar?.visibility = View.VISIBLE
 
 
         val view = binding.root
@@ -86,7 +84,6 @@ class HistoryListFragment : Fragment() {
         onCLickScan()
 
 
-
 //        swipeDelete()
     }
     private fun onCLickScan() {
@@ -96,18 +93,6 @@ class HistoryListFragment : Fragment() {
                 R.id.scanFragment,
                 null,
             )
-        }
-    }
-
-    private fun onClickNewList(){
-        binding.fabNewList.setOnClickListener {
-            findNavController().navigate(
-                R.id.listProductsFragment,
-                null,
-                NavOptions.Builder().setPopUpTo(R.id.historyListFragment2, true).build()
-            )
-            listViewModel.delete()
-
         }
     }
 
@@ -228,5 +213,6 @@ class HistoryListFragment : Fragment() {
         callback = null
 
     }
+
 
 }

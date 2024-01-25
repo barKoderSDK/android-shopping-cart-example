@@ -1,5 +1,7 @@
 package com.example.barkodershopapp.ui.adapters
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -75,6 +77,8 @@ class SelectProductAdapter(
             binding.btnAddProduct.setOnClickListener {
                 viewModel.insert(ListDataEntity(list))
                 listener.onAdedProduct(list)
+                binding.btnAddProduct.visibility = View.GONE
+                binding.btnAddedProduct.visibility = View.VISIBLE
             }
 
 
@@ -90,7 +94,7 @@ class SelectProductAdapter(
             } else {
                 binding.btnAddProduct.visibility = View.GONE
             }
-
+//            val bitmap: Bitmap = BitmapFactory.decodeFile(list.priceHistory.first().originalImage)
             val byteArray = list.imageProduct?.let { TypeConverterss.toBitmap(it) }
             binding.imageSelectProduct2.load(byteArray) {
                 crossfade(true)

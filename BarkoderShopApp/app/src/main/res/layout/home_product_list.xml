@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="66dp"
     android:layout_marginStart="20dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="3dp"
     android:layout_marginEnd="20dp"
     android:background="@drawable/rounded_background"
     android:backgroundTint="#FFFFFF">
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline43"
@@ -82,10 +82,9 @@
         android:id="@+id/productNameHome"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center_vertical"
         android:text="TextView"
         android:textColor="@color/productName"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintEnd_toStartOf="@+id/guideline33"
         app:layout_constraintStart_toStartOf="@+id/guideline34"

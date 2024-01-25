@@ -1,6 +1,8 @@
 package com.example.barkodershopapp.ui.fragments
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -88,7 +90,8 @@ class ProductInfoFragment : Fragment() {
         binding.editQuantityUpdateProduct.setText(args.currentProduct.quantityProduct.toString())
         binding.editUnitUpdateProduct.setText(args.currentProduct.unitProduct)
 
-        val byteArray = args.currentProduct.imageProduct?.let { TypeConverterss.toBitmap(it) }
+//        val bitmap: Bitmap = BitmapFactory.decodeFile(args.currentProduct.imageProduct)!!
+        val byteArray = args.currentProduct.originalImage.first().originalImage?.let { BitmapFactory.decodeFile(it) }
         binding.imageProductInfo.load(byteArray) {
             crossfade(true)
         }
@@ -133,7 +136,9 @@ class ProductInfoFragment : Fragment() {
             false,
             args.currentProduct.imageProduct,
             1,
-            price.toInt(), args.currentProduct.priceHistory, 0,false, args.currentProduct.id
+            price.toInt(), args.currentProduct.priceHistory, 0,false,
+            args.currentProduct.originalImage,
+            args.currentProduct.id,
         )
         productViewModel.updateItem(currentProduct)
 

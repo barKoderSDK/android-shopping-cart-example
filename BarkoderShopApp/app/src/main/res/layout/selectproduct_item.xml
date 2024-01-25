@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:text="325324123"
         android:textColor="@color/productInfo"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintStart_toStartOf="@+id/guideline34"
         app:layout_constraintTop_toTopOf="@+id/guideline41" />
@@ -74,7 +74,7 @@
         android:layout_marginTop="4dp"
         android:text="Coca Cola"
         android:textColor="@color/productName"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline41"
         app:layout_constraintEnd_toStartOf="@+id/guideline33"
         app:layout_constraintStart_toStartOf="@+id/guideline34"
@@ -108,8 +108,8 @@
 
     <ImageView
         android:id="@+id/imageView140"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintStart_toEndOf="@+id/textSelectProductBarcode"
@@ -121,6 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2.5 $"
+        android:visibility="invisible"
         android:textColor="@color/productInfo"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -170,6 +171,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:visibility="invisible"
         android:textColor="@color/productInfo"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -182,6 +184,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="TextView"
+        android:visibility="invisible"
         android:textColor="@color/productInfo"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -194,10 +197,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:text=":"
+        android:visibility="invisible"
         android:textColor="@color/productInfo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textProductUnit"
         app:layout_constraintTop_toTopOf="@+id/guideline42" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline32"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/keyboard_arrow_right_fill0_wght400_grad0_opsz48" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

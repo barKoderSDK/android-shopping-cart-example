@@ -4,19 +4,19 @@
     
     <item android:title="Home"
         android:id="@+id/homeScreenFragment"
-        android:icon="@drawable/home_fill0_wght400_grad0_opsz48" />
+        android:icon="@drawable/home_nav_icon" />
     <item android:title="Lists"
         android:id="@+id/historyListFragment2"
-        android:icon="@drawable/list_icon"/>
+        android:icon="@drawable/lists_nav_icon"/>
     <item
         android:id="@+id/palcholder"
         android:title=""/>
 
     <item android:title="Products"
         android:id="@+id/selectProductFragment"
-        android:icon="@drawable/icon_products"/>
+        android:icon="@drawable/products_nav_icon"/>
     <item android:title="Add"
         android:id="@+id/addProductFragment"
-        android:icon = "@drawable/add_box"/>
+        android:icon = "@drawable/add_nav_icon"/>
 
 </menu>

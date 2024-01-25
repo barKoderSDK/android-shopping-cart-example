@@ -2,6 +2,7 @@ package com.example.barkodershopapp.ui.adapters
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -58,23 +59,36 @@ class ProductAdapter(private val context:Context,
 
 
         fun bind(list: ListDataEntity, context:Context) {
-            binding.btnAddSize.setOnClickListener {
-                listener.onClickPlus(list)
-            }
-            binding.btnMinusSize.setOnClickListener {
-                listener.onClickMinus(list)
-            }
+            var size = list.listProducts.count
+
+            binding.textCountProduct.text = list.listProducts.count.toString()
             binding.textProductName.text = list.listProducts.nameProduct
             binding.textProductBarcode.text = list.listProducts.barcodeProduct.toString()
-            binding.textCountProduct.text = list.listProducts.count.toString()
             binding.textProductPrice.text = list.listProducts.priceProduct.toString()
             binding.textProductTotalPrice.text = list.listProducts.totalPrice.toString()
 
+            binding.btnAddSize.setOnClickListener {
+                size++
+                binding.textCountProduct.text = size.toString()
+                var totalPrice = list.listProducts.totalPrice + list.listProducts.priceProduct
+                binding.textProductTotalPrice.text = totalPrice.toString()
+                listener.onClickPlus(list)
+            }
+            binding.btnMinusSize.setOnClickListener {
+                if(size >= 2) {
+                    size--
+                    var totalPrice = list.listProducts.totalPrice - list.listProducts.priceProduct
+                    binding.textProductTotalPrice.text = totalPrice.toString()
+                    binding.textCountProduct.text = size.toString()
+                    listener.onClickMinus(list)
+                }
+
+            }
+//            val bitmap: Bitmap = BitmapFactory.decodeFile(list.listProducts.imageProduct)!!
             val byteArray = list.listProducts.imageProduct?.let { TypeConverterss.toBitmap(it) }
 
             binding.imageProduct2.load(byteArray) {
                 crossfade(true)
-                crossfade(1500)
             }
         }
     }

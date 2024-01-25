@@ -1,7 +1,10 @@
 package com.example.barkodershopapp.ui.fragments
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -124,7 +127,8 @@ class ProductHistoryFragment : Fragment() {
             binding.textQuantityInfo.setText(args.currentProduct.quantityProduct.toString())
             binding.textUnitInfo.setText(args.currentProduct.unitProduct)
 
-            val byteArray = args.currentProduct.imageProduct?.let { TypeConverterss.toBitmap(it) }
+//            val bitmap: Bitmap = BitmapFactory.decodeFile(args.currentProduct.priceHistory.first().originalImage)
+            val byteArray = args.currentProduct.originalImage.first().originalImage?.let { BitmapFactory.decodeFile(it) }
             binding.imageProductInfo.load(byteArray) {
                 crossfade(true)
             }
