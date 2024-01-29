@@ -62,8 +62,9 @@
         android:id="@+id/fabNav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FF3347"
         app:layout_anchor="@id/bottomNavigationApp"
-        android:src="@drawable/qr_code_scanner_fill0_wght500_grad0_opsz48" />
+        android:src="@drawable/ico_scan_barkoder_fab" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

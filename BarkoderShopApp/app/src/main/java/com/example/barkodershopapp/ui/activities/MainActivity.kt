@@ -8,6 +8,7 @@ import android.content.res.Configuration
 import android.database.CursorWindow
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -21,6 +22,7 @@ import androidx.appcompat.widget.ToolbarWidgetWrapper
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
@@ -33,6 +35,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.barkoder.shoppingApp.net.R
 import com.barkoder.shoppingApp.net.databinding.ActivityMainBinding
 import com.example.barkodershopapp.data.db.productdatabase.ProductDataEntity
+import com.example.barkodershopapp.ui.fragments.HistoryListFragment
+import com.example.barkodershopapp.ui.fragments.ListProductsFragment
 import com.example.barkodershopapp.ui.viewmodels.ListViewModel
 import com.example.barkodershopapp.ui.viewmodels.ProductViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -88,21 +92,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
-
-
         bottomNavigationView.setupWithNavController(navController!!)
         bottomNavigationView.selectedItemId = R.id.homeScreenFragment
+        val currentFragment = navHostFragment.childFragmentManager.primaryNavigationFragment
 
         toolBar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId){
                 R.id.searchIcon -> promptSpeechInput()
                 R.id.addIcon -> {
                     if(bottomNavigationView.selectedItemId == R.id.historyListFragment2) {
-                        navController!!.navigate(
-                            R.id.listProductsFragment,
-                            null,
-                            NavOptions.Builder().setPopUpTo(R.id.historyListFragment2, true).build()
-                        )
+                        navController!!.navigate(R.id.dialogListCreate)
                         listViewModel.delete()
                     }
                     else if (bottomNavigationView.selectedItemId == R.id.selectProductFragment) {
@@ -112,6 +111,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                             NavOptions.Builder().setPopUpTo(R.id.selectProductFragment, true).build()
                         )
                     }
+                }
+                R.id.addIcon2 -> {
+                        var listId = currentFragment?.arguments?.getLong("currentListId")
+                        var checkedDate = currentFragment?.arguments?.getString("checkedDate").toString()
+                        var listName = currentFragment?.arguments?.getString("listName")
+                        var edit = currentFragment?.arguments?.getBoolean("edit")
+                        var editMode = currentFragment?.arguments?.getBoolean("editMode")
+                        Log.d("listName", editMode.toString())
+                        if(editMode == true) {
+                            var bundle = Bundle()
+                            bundle.putBoolean("editSelect", true)
+                            bundle.putLong("listId",listId!!)
+                            bundle.putString("checkedDate", checkedDate)
+                            bundle.putString("listName", listName)
+                            navController!!.navigate(
+                                R.id.selectProductFragment,
+                                bundle,
+                                NavOptions.Builder().setPopUpTo(R.id.listProductsFragment, true).build()
+                            )
+                        } else {
+                            var bundle = Bundle()
+                            bundle.putBoolean("createSelect", true)
+                            bundle.putString("listName", listName)
+                            bundle.putString("listNameCreate", listName)
+                            navController!!.navigate(
+                                R.id.selectProductFragment,
+                                bundle,
+                                NavOptions.Builder().setPopUpTo(R.id.listProductsFragment, true).build()
+                            )
+                        }
                 }
             }
             true
@@ -197,6 +226,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun getCurrentFragment(): Fragment? {
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentList = fragmentManager.fragments
+
+        for (fragment in fragmentList) {
+            if (fragment.isVisible) {
+                return fragment
+            }
+        }
+
+        return null
     }
 
 

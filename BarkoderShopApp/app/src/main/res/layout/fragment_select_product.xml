@@ -32,28 +32,16 @@
             app:layout_constraintTop_toTopOf="@+id/include" />
 
 
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/rounded_searchview2"
-            app:layout_constraintBottom_toBottomOf="@id/guideline24"
-            app:layout_constraintEnd_toStartOf="@+id/guideline22"
-            app:layout_constraintStart_toStartOf="@+id/guideline21"
-            app:layout_constraintTop_toTopOf="@+id/guideline23">
-
-        </SearchView>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recViewSelect"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             app:layout_constraintBottom_toTopOf="@+id/guideline27"
             app:layout_constraintEnd_toStartOf="@+id/guideline26"
             app:layout_constraintStart_toStartOf="@+id/guideline25"
-            app:layout_constraintTop_toTopOf="@+id/guideline24"
+            app:layout_constraintTop_toBottomOf="@+id/include"
             tools:listitem="@layout/selectproduct_item" />
 
         <androidx.constraintlayout.widget.Guideline

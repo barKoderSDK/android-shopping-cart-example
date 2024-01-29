@@ -55,22 +55,6 @@
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/tool_bar"
-            tools:layout_editor_absoluteY="561dp" />
-
-        <TextView
-            android:id="@+id/textActivityName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/createProduct"
-            android:textColor="#FBFAFA"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
@@ -215,7 +199,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="10dp"
-                android:src="@drawable/mic_icon"
+                android:src="@drawable/microphone_2_red"
                 app:layout_constraintBottom_toTopOf="@+id/guideline20"
                 app:layout_constraintEnd_toStartOf="@+id/guideline5"
                 app:layout_constraintTop_toTopOf="@+id/guideline10" />
@@ -362,6 +346,7 @@
                 android:clickable="true"
                 android:text="@string/add"
                 app:cornerRadius="50dp"
+                android:textAllCaps="false"
                 app:layout_constraintBottom_toTopOf="@+id/guideline18"
                 app:layout_constraintEnd_toStartOf="@+id/guideline5"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -371,14 +356,13 @@
 
             <ImageView
                 android:id="@+id/btnScanAddProduct"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
                 android:background="@color/editTextBoxColor"
-                android:src="@drawable/qr_code_scanner_fill0_wght500_grad0_opsz48"
+                android:src="@drawable/ico_scan_red_barkoder"
                 app:layout_constraintBottom_toTopOf="@+id/guideline12"
                 app:layout_constraintEnd_toStartOf="@+id/guideline5"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
             <com.google.android.material.button.MaterialButton
@@ -390,6 +374,7 @@
                 android:text="@string/takePhoto"
                 android:textColor="@color/productInfo"
                 app:cornerRadius="50dp"
+                android:textAllCaps="false"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

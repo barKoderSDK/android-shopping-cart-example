@@ -2,17 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
-        android:id="@+id/addIcon"
-        android:title="mic"
+        android:id="@+id/addIcon2"
+        android:title="add"
         android:icon="@drawable/add_square_white"
         android:contentDescription="Add"
         app:showAsAction="ifRoom"
         />
-
+    <item
+        android:id="@+id/addIcon"
+        android:title="add"
+        android:icon="@drawable/add_square_white"
+        android:contentDescription="Add"
+        app:showAsAction="ifRoom"
+        />
     <item
         android:id="@+id/searchIcon"
-        android:title="mic"
+        android:title="search"
         android:icon="@drawable/search_icon"
         android:contentDescription="mic"
         app:showAsAction="ifRoom"

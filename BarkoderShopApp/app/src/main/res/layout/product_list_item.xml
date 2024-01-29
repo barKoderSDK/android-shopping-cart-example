@@ -21,14 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.70"/>
+        app:layout_constraintGuide_percent="0.60" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85"/>
+        app:layout_constraintGuide_begin="320dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline31"
@@ -75,13 +75,12 @@
 
     <TextView
         android:id="@+id/textProductName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Coca Cola"
         android:textColor="@color/productName"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline41"
-        app:layout_constraintEnd_toStartOf="@+id/guideline33"
         app:layout_constraintStart_toStartOf="@+id/guideline34"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -109,50 +108,38 @@
         android:id="@+id/textProductTotalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="15dp"
         android:text="5 $"
         android:textColor="@color/productInfo"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/guideline42" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/btnMinusSize"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:backgroundTint="@color/designColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:src="@drawable/remove_fill0_wght400_grad0_opsz48"
-        app:fabCustomSize="25dp"
+        android:background="@color/backroundDesignColor"
+        android:src="@drawable/minus_ic"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintEnd_toStartOf="@+id/guideline32"
         app:layout_constraintStart_toStartOf="@+id/guideline33"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/btnAddSize"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:backgroundTint="@color/designColor"
-        android:src="@drawable/plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:background="@color/backroundDesignColor"
+        android:src="@drawable/plus_ic"
         app:fabCustomSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline32"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="13sp"
-        android:layout_height="13sp"
-        android:layout_marginStart="3dp"
-        android:backgroundTint="@color/productInfo"
-        app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintStart_toEndOf="@+id/textProductBarcode"
-        app:layout_constraintTop_toTopOf="@+id/guideline41"
-        app:srcCompat="@drawable/barcode_scanner" />
 
     <TextView
         android:id="@+id/textView7"
@@ -169,10 +156,10 @@
         android:id="@+id/textProductPrice"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="15dp"
         android:text="2.5 $"
         android:textColor="@color/productInfo"
-        android:textSize="12sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="@+id/guideline42" />
@@ -181,36 +168,55 @@
         android:id="@+id/textCountProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="-1dp"
+        android:layout_marginStart="1dp"
         android:text="2"
         android:textColor="@color/productInfo"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintStart_toStartOf="@+id/guideline32"
-        app:layout_constraintTop_toTopOf="@+id/guideline41" />
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="6dp"
+        android:layout_marginEnd="13dp"
         android:text="x"
         android:textColor="@color/productInfo"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintEnd_toStartOf="@+id/guideline32"
-        app:layout_constraintTop_toTopOf="@+id/guideline41" />
+        app:layout_constraintEnd_toStartOf="@+id/btnAddSize"
+        app:layout_constraintStart_toEndOf="@+id/btnMinusSize"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="50dp"
         android:text="Total:"
         android:textColor="@color/productInfo"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textProductTotalPrice"
         app:layout_constraintStart_toStartOf="@+id/guideline33"
+        app:layout_constraintTop_toTopOf="@+id/guideline42" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textProductTotalPrice"
+        app:layout_constraintTop_toTopOf="@+id/guideline42" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:text="$"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textProductPrice"
         app:layout_constraintTop_toTopOf="@+id/guideline42" />
 </androidx.constraintlayout.widget.ConstraintLayout>

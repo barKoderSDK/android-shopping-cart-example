@@ -5,8 +5,10 @@ import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.barkoder.shoppingApp.net.R
 import com.barkoder.shoppingApp.net.databinding.CurrentlistListBinding
 import com.example.barkodershopapp.data.db.listdatabase.ListDataEntity
 import com.example.barkodershopapp.ui.listeners.OnCheckedListener
@@ -42,8 +44,13 @@ private val listener : OnCheckedListener) : RecyclerView.Adapter<CurrentListAdap
                 crossfade(true)
             }
             binding.checkBox.isChecked = list.listProducts.checkout
-
+            if(binding.textScannedCount.text.toString().toInt() > 0) {
+                binding.currentLayout.setBackgroundResource(R.drawable.rounded_background_stroke)
+            } else {
+                binding.currentLayout.setBackgroundResource(R.drawable.rounded_background)
+            }
             binding.checkBox.setOnClickListener {
+
 
                 listener.onCheckedChanged(list)
 

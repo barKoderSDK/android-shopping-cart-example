@@ -83,7 +83,7 @@
         android:textColor="@color/productName"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintEnd_toStartOf="@+id/guideline33"
+        app:layout_constraintEnd_toStartOf="@+id/guideline32"
         app:layout_constraintStart_toStartOf="@+id/guideline34"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,16 +126,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline33"
         app:layout_constraintTop_toTopOf="@+id/guideline42" />
 
-    <ImageView
-        android:id="@+id/imageChecked"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintStart_toStartOf="@+id/guideline32"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/done_fill0_wght400_grad0_opsz48" />
 
     <TextView
         android:id="@+id/totalCostList"
@@ -157,6 +147,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline32"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/keyboard_arrow_right_fill0_wght400_grad0_opsz48" />
+        app:srcCompat="@drawable/shopping_cart_outlined" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

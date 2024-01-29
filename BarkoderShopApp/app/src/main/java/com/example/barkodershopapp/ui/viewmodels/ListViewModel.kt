@@ -17,6 +17,7 @@ class ListViewModel @Inject constructor(private val repository: ListDataReposito
     val allNotes: LiveData<MutableList<ListDataEntity>> = repository.allNotes
     var isListStarted: Boolean = false
     var isEditMode: Boolean = false
+    val listName = MutableLiveData<String>()
     fun getAllProducts(): LiveData<List<ListDataEntity>> {
         return MutableLiveData<List<ListDataEntity>>().apply {
             value = repository.getAllProducts()
@@ -36,5 +37,9 @@ class ListViewModel @Inject constructor(private val repository: ListDataReposito
     }
     fun updateItem(list: ListDataEntity) = viewModelScope.launch {
         repository.updateItem(list)
+    }
+
+    fun updateListName(newString: String) {
+        listName.value = newString
     }
 }

@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.size
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
@@ -47,7 +49,7 @@ class ProductHistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentProductHistoryBinding.inflate(inflater, container, false)
-
+        setHasOptionsMenu(true)
         setupRecView()
         setupTextViews()
         navInvisible()
@@ -57,6 +59,9 @@ class ProductHistoryFragment : Fragment() {
         val activity = requireActivity() as AppCompatActivity
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        val toolbar = (activity as? AppCompatActivity)?.findViewById<Toolbar>(R.id.toolBarrr)
+        toolbar?.visibility = View.VISIBLE
 
 
 
@@ -111,7 +116,7 @@ class ProductHistoryFragment : Fragment() {
             binding.textActivityName.setText(productName)
             binding.textNameInfo.setText(productName)
             binding.textBarcodeInfo.setText(productBarcode)
-            binding.textPriceInfo.setText(productPrice)
+            binding.textPriceInfo.setText("$" + productPrice)
             binding.textQuantityInfo.setText(productQuantity)
             binding.textUnitInfo.setText(productUnit)
             val byteArray = productImage?.let { TypeConverterss.toBitmap(it) }
@@ -123,7 +128,7 @@ class ProductHistoryFragment : Fragment() {
             binding.textActivityName.setText(args.currentProduct.nameProduct)
             binding.textNameInfo.setText(args.currentProduct.nameProduct)
             binding.textBarcodeInfo.setText(args.currentProduct.barcodeProduct)
-            binding.textPriceInfo.setText(args.currentProduct.priceProduct.toString())
+            binding.textPriceInfo.setText("$" + args.currentProduct.priceProduct.toString())
             binding.textQuantityInfo.setText(args.currentProduct.quantityProduct.toString())
             binding.textUnitInfo.setText(args.currentProduct.unitProduct)
 
@@ -216,6 +221,16 @@ class ProductHistoryFragment : Fragment() {
         _binding = null
         priceAdapter = null
 
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val messagesMenuItem = menu.findItem(R.id.searchIcon)
+        val addMenuItem = menu.findItem(R.id.addIcon)
+        val addMenuItem2 = menu.findItem(R.id.addIcon2)
+        messagesMenuItem?.isVisible = false
+        addMenuItem?.isVisible = false
+        addMenuItem2?.isVisible = false
     }
 }
 

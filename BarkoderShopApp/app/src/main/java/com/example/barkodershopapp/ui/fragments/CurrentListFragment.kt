@@ -14,6 +14,7 @@ import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
@@ -74,11 +76,13 @@ class CurrentListFragment : Fragment(), BarkoderResultCallback {
         {
             Log.i("LicenseInfo", it.message)
         }
-        setupRecView()
-        setupTextViews()
+        setHasOptionsMenu(true)
         navInvisible()
         toolBarName()
         scannedPro()
+
+        val toolbar = (activity as? AppCompatActivity)?.findViewById<Toolbar>(R.id.toolBarrr)
+        toolbar?.visibility = View.VISIBLE
 
         val view = binding.root
         return view
@@ -87,14 +91,16 @@ class CurrentListFragment : Fragment(), BarkoderResultCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        setupTextViews()
         onClickScan()
-        onClickStart()
+//        onClickStart()
         onClickStop()
         onClickRestore()
         onBackButton()
         setBarkoderSettings()
         setActiveBarcodeTypes()
+        setupRecView()
+
     }
 
 
@@ -122,18 +128,30 @@ class CurrentListFragment : Fragment(), BarkoderResultCallback {
     }
     private fun setupTextViews(){
         binding.textView25.text = args.currentList.listProducts.size.toString()
-        binding.textTotalCostP.text = sumTotalCost(args.currentList.listProducts).toString() + " $"
+        binding.textTotalCostP.text = "$ " + sumTotalCost(args.currentList.listProducts).toString()
     }
 
     private fun onClickScan(){
         binding.btnStartList.setOnClickListener {
-//            var action = CurrentListFragmentDirections.actionCurrentListFragment2ToScanTwoFragment()
-//            var bundle = Bundle()
-//            bundle.putString("current", "current")
-//            findNavController().navigate(action)
-            binding.btnStartList.visibility = View.GONE
+            listViewModel.isListStarted = !listViewModel.isListStarted
+            currentAdapter!!.showCheckboxes = !currentAdapter!!.showCheckboxes
+            if (listViewModel.isListStarted && currentAdapter!!.showCheckboxes) {
+                currentAdapter!!.notifyDataSetChanged()
+
+            } else {
+                currentAdapter!!.notifyDataSetChanged()
+
+            }
+            binding.btnStartList.visibility = View.INVISIBLE
             binding.btnStopList.visibility = View.VISIBLE
             binding.bkdView2.visibility = View.VISIBLE
+            binding.textView23.visibility = View.VISIBLE
+            binding.textView24.visibility = View.VISIBLE
+            binding.textView25.visibility = View.VISIBLE
+            binding.textView26.visibility = View.VISIBLE
+            binding.textTotalCostP.visibility = View.VISIBLE
+            binding.scannedProductsP.visibility = View.VISIBLE
+            binding.textView27.visibility = View.INVISIBLE
             binding.bkdView2.startScanning(this)
         }
     }
@@ -157,6 +175,13 @@ class CurrentListFragment : Fragment(), BarkoderResultCallback {
             binding.btnStartList.visibility = View.VISIBLE
             binding.btnRestoreCheckout.visibility = View.GONE
             binding.bkdView2.visibility = View.GONE
+            binding.textView23.visibility = View.INVISIBLE
+            binding.textView24.visibility = View.INVISIBLE
+            binding.textView25.visibility = View.INVISIBLE
+            binding.textView26.visibility = View.INVISIBLE
+            binding.textTotalCostP.visibility = View.INVISIBLE
+            binding.scannedProductsP.visibility = View.INVISIBLE
+            binding.textView27.visibility = View.VISIBLE
             binding.bkdView2.stopScanning()
             for (i in args.currentList.listProducts) {
                 i.listProducts.defultCount = 0
@@ -168,19 +193,10 @@ class CurrentListFragment : Fragment(), BarkoderResultCallback {
 
     private fun onClickStart(){
         binding.btnStartList.setOnClickListener {
-            listViewModel.isListStarted = !listViewModel.isListStarted
-            currentAdapter!!.showCheckboxes = !currentAdapter!!.showCheckboxes
-            if (listViewModel.isListStarted && currentAdapter!!.showCheckboxes) {
-                currentAdapter!!.notifyDataSetChanged()
 
-            } else {
-                currentAdapter!!.notifyDataSetChanged()
-
-            }
 
             changeStatusBarColor(ContextCompat.getColor(requireContext(), R.color.toolBarColor))
             binding.include.toolBarr.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.toolBarColor))
-            binding.textActivityName.text = "Checkout Mode"
 
             binding.btnRestoreCheckout.visibility = View.GONE
             binding.bkdView2.visibility = View.VISIBLE
@@ -392,7 +408,7 @@ class CurrentListFragment : Fragment(), BarkoderResultCallback {
             config.isRegionOfInterestVisible = true
             config.isPinchToZoomEnabled = true
             config.setRegionOfInterest(5f, 5f, 90f, 90f)
-            config.thresholdBetweenDuplicatesScans = 3
+            config.thresholdBetweenDuplicatesScans = 2
             config.isCloseSessionOnResultEnabled = false
         }
     }
@@ -419,6 +435,16 @@ class CurrentListFragment : Fragment(), BarkoderResultCallback {
             updateUI(results[0], p2!!)
         else
             updateUI()
+    }
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val messagesMenuItem = menu.findItem(R.id.searchIcon)
+        val addMenuItem = menu.findItem(R.id.addIcon)
+        val addMenuItem2 = menu.findItem(R.id.addIcon2)
+
+        messagesMenuItem?.isVisible = false
+        addMenuItem2?.isVisible = false
+        addMenuItem?.isVisible = false
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

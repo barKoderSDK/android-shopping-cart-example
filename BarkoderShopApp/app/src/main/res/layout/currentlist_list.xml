@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:layout_marginTop="8dp"
-    android:background="@drawable/rounded_background"
-    android:backgroundTint="@color/white">
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="@drawable/rounded_background">
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -77,13 +78,12 @@
 
     <TextView
         android:id="@+id/textProductName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Coca Cola"
         android:textColor="@color/productName"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline41"
-        app:layout_constraintEnd_toStartOf="@+id/guideline33"
         app:layout_constraintStart_toStartOf="@+id/guideline34"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -118,7 +118,7 @@
         android:id="@+id/textProductTotalPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="15dp"
         android:text="5 $"
         android:textColor="@color/productInfo"
         android:textSize="16sp"
@@ -126,26 +126,26 @@
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/guideline42" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="15sp"
-        android:layout_height="15sp"
-        android:layout_marginStart="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintStart_toEndOf="@+id/textProductBarcode"
-        app:layout_constraintTop_toTopOf="@+id/guideline41"
-        app:srcCompat="@drawable/barcode_scanner" />
+    <TextView
+        android:id="@+id/dolar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$"
+        android:textColor="@color/productInfo"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textProductTotalPrice"
+        app:layout_constraintTop_toTopOf="@+id/guideline42" />
+
 
     <TextView
         android:id="@+id/textProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
         android:text="1231412"
         android:textColor="@color/productInfo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/guideline34"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/guideline42" />
 
     <TextView
@@ -163,22 +163,21 @@
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:buttonTint="@color/checkBox"
+        android:buttonTint="@color/designColor"
         android:textColor="#F1ECEC"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintEnd_toStartOf="@+id/guideline32"
-        app:layout_constraintStart_toStartOf="@+id/guideline33"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline32"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textScannedCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
         android:text="0"
-        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline32"
+        app:layout_constraintStart_toStartOf="@+id/guideline33"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.517" />
 
@@ -187,12 +186,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="3dp"
         android:text="/"
-        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline32"
+        app:layout_constraintStart_toEndOf="@+id/textScannedCount"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -201,7 +198,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:text="1"
-        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="parent"
@@ -214,7 +210,6 @@
         android:layout_marginEnd="8dp"
         android:text="x"
         android:textSize="16sp"
-        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
         app:layout_constraintEnd_toStartOf="@+id/textView12"
         app:layout_constraintTop_toTopOf="parent" />
@@ -225,21 +220,28 @@
         android:layout_height="wrap_content"
         android:text="10"
         android:textSize="16sp"
-        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline32"
+        app:layout_constraintEnd_toEndOf="@+id/checkBox"
+        app:layout_constraintStart_toStartOf="@+id/checkBox"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="4dp"
         android:text="$"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textProductPrice"
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toTopOf="@+id/guideline42" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline34"
         app:layout_constraintTop_toTopOf="@+id/guideline42" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

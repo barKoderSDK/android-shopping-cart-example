@@ -210,6 +210,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="-3dp"
                 android:layout_marginBottom="-3dp"
                 android:gravity="center"
                 android:text="1231"
@@ -218,17 +219,6 @@
                 app:layout_constraintBottom_toTopOf="@+id/guideline11"
                 app:layout_constraintStart_toEndOf="@+id/textView11" />
 
-            <ImageView
-                android:id="@+id/btnScanAddProduct"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="-7dp"
-                android:background="@color/editTextBoxColor"
-                android:src="@drawable/qr_code_scanner_fill0_wght500_grad0_opsz48"
-                app:layout_constraintStart_toEndOf="@+id/textBarcodeInfo"
-                app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCancel"
@@ -239,6 +229,7 @@
                 android:clickable="true"
                 android:text="@string/cancel"
                 app:cornerRadius="50dp"
+                android:textAllCaps="false"
                 app:layout_constraintBottom_toTopOf="@+id/guideline11"
                 app:layout_constraintEnd_toStartOf="@+id/guideline5"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"

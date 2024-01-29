@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline32"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/keyboard_arrow_right_fill0_wght400_grad0_opsz48" />
+        app:srcCompat="@drawable/shopping_cart_outlined" />
 
     <TextView
         android:id="@+id/textView15"

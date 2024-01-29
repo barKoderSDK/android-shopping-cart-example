@@ -83,6 +83,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="TextView"
+        android:layout_marginTop="5dp"
         android:textColor="@color/productName"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline42"

@@ -4,8 +4,10 @@ import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +51,8 @@ class SelectProductFragment : Fragment() {
     private var product : ProductDataEntity? = null
     private var addedProducst : ArrayList<ProductDataEntity>? = null
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,8 +62,7 @@ class SelectProductFragment : Fragment() {
 
         val toolbar = (activity as? AppCompatActivity)?.findViewById<Toolbar>(R.id.toolBarrr)
         toolbar?.visibility = View.VISIBLE
-
-
+        setHasOptionsMenu(true)
         val view = binding.root
         return view
     }
@@ -73,6 +76,9 @@ class SelectProductFragment : Fragment() {
         observeList()
         requireActivity().title = requireContext().getString(R.string.myProducts)
         btnDoneProducts()
+
+
+
 
 
 
@@ -126,13 +132,11 @@ class SelectProductFragment : Fragment() {
             var editSelect = this@SelectProductFragment.arguments?.getBoolean("editSelect")
             var listId = this@SelectProductFragment.arguments?.getLong("listId")
             var checkedDate = this@SelectProductFragment.arguments?.getString("checkedDate")
-            var listName = this@SelectProductFragment.arguments?.getString("listName")
             var bundle = Bundle()
             if(editSelect == true){
                 bundle.putBoolean("editMode", true)
                 bundle.putLong("currentListId", listId!!)
                 bundle.putString("checkedDate", checkedDate)
-                bundle.putString("listName", listName)
             } else {
                 bundle.putBoolean("editMode", false)
             }
@@ -150,7 +154,7 @@ class SelectProductFragment : Fragment() {
         productViewModel.allNotes.observe(viewLifecycleOwner, Observer { products ->
             binding.progressBar3.visibility = View.GONE
             selectAdapter!!.setProductsList2(products as ArrayList<ProductDataEntity>)
-            searchView(products)
+//            searchView(products)
 
         })
     }
@@ -158,11 +162,10 @@ class SelectProductFragment : Fragment() {
     private fun setupRecView() {
         var listId = this@SelectProductFragment.arguments?.getLong("listId")
         var checkedDate = this@SelectProductFragment.arguments?.getString("checkedDate")
-        var listName = this@SelectProductFragment.arguments?.getString("listName")
         var editSelect = this@SelectProductFragment.arguments?.getBoolean("editSelect")
         var listNameCreate = this@SelectProductFragment.arguments?.getString("listNameCreate")
         if(editSelect == true){
-            selectAdapter = SelectProductAdapter(productS, listViewMOdel, listId!!, checkedDate!!,listName!!, listener)
+            selectAdapter = SelectProductAdapter(productS, listViewMOdel, listId!!, checkedDate!!,"", listener)
         } else {
             selectAdapter = SelectProductAdapter(productS, listViewMOdel, 0L, "","", listener)
         }
@@ -270,26 +273,26 @@ class SelectProductFragment : Fragment() {
     }
 
 
-
-    private fun searchView(list: List<ProductDataEntity>) {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) {
-                    selectAdapter!!.setProductsList(list as ArrayList<ProductDataEntity>)
-                } else {
-                    val filteredList = list.filter { product ->
-                        product.nameProduct!!.contains(newText, ignoreCase = true)
-                    } as ArrayList<ProductDataEntity>
-                    selectAdapter!!.setProductsList(filteredList)
-                }
-                return false
-            }
-        })
-    }
+//
+//    private fun searchView(list: List<ProductDataEntity>) {
+//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(p0: String?): Boolean {
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                if (newText.isNullOrEmpty()) {
+//                    selectAdapter!!.setProductsList(list as ArrayList<ProductDataEntity>)
+//                } else {
+//                    val filteredList = list.filter { product ->
+//                        product.nameProduct!!.contains(newText, ignoreCase = true)
+//                    } as ArrayList<ProductDataEntity>
+//                    selectAdapter!!.setProductsList(filteredList)
+//                }
+//                return false
+//            }
+//        })
+//    }
 
     private fun onBackButton(){
         callback = object : OnBackPressedCallback(true ) {
@@ -297,14 +300,14 @@ class SelectProductFragment : Fragment() {
                 var editSelect = this@SelectProductFragment.arguments?.getBoolean("editSelect")
                 var listId = this@SelectProductFragment.arguments?.getLong("listId")
                 var checkedDate = this@SelectProductFragment.arguments?.getString("checkedDate")
-                var listName = this@SelectProductFragment.arguments?.getString("listName")
                 var bundle = Bundle()
                 if(editSelect == true){
                     bundle.putBoolean("editMode", true)
+                    bundle.putBoolean("selectBack", true)
                     bundle.putLong("currentListId", listId!!)
                     bundle.putString("checkedDate", checkedDate)
-                    bundle.putString("listName", listName)
                 } else {
+                    bundle.putBoolean("selectBack", true)
                     bundle.putBoolean("editMode", false)
                 }
                 for(i in addedProducst!!) {
@@ -345,14 +348,14 @@ class SelectProductFragment : Fragment() {
                 var editSelect = this@SelectProductFragment.arguments?.getBoolean("editSelect")
                 var listId = this@SelectProductFragment.arguments?.getLong("listId")
                 var checkedDate = this@SelectProductFragment.arguments?.getString("checkedDate")
-                var listName = this@SelectProductFragment.arguments?.getString("listName")
                 var bundle = Bundle()
                 if(editSelect == true){
                     bundle.putBoolean("editMode", true)
+                    bundle.putBoolean("selectBack", true)
                     bundle.putLong("currentListId", listId!!)
                     bundle.putString("checkedDate", checkedDate)
-                    bundle.putString("listName", listName)
                 } else {
+                    bundle.putBoolean("selectBack", true)
                     bundle.putBoolean("editMode", false)
                 }
 
@@ -365,6 +368,12 @@ class SelectProductFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val addMenuItem2 = menu.findItem(R.id.addIcon2)
+        addMenuItem2?.isVisible = false
     }
 
 

@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline28"
             app:layout_constraintEnd_toStartOf="@+id/guideline26"
             app:layout_constraintStart_toStartOf="@+id/guideline25"
-            app:layout_constraintTop_toTopOf="@+id/guideline24"
+            app:layout_constraintTop_toBottomOf="@+id/include"
             tools:listitem="@layout/product_list_item" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -114,35 +114,7 @@
             app:layout_constraintStart_toStartOf="@+id/guideline21"
             app:layout_constraintTop_toTopOf="@+id/guideline23">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextListName"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:hint="@string/listName"
-                android:maxLength="40"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:singleLine="true"
-                android:textSize="13sp" />
-
-
         </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnAddNewList"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="30dp"
-            android:clickable="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/add_circle"
-            android:visibility="visible"
-            app:fabCustomSize="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline28"
-            app:maxImageSize="25dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnUpdateList"
@@ -169,13 +141,11 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/lists_products_background"
             android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/btnAddNewList"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/linearLayout2"
             app:layout_constraintTop_toTopOf="@+id/guideline28">
 
             <TextView
-                android:id="@+id/textTotalCostList"
+                android:id="@+id/textTotalCostList2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -197,16 +167,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/buttonImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:src="@drawable/add_product"
-            app:layout_constraintBottom_toTopOf="@+id/guideline24"
-            app:layout_constraintEnd_toStartOf="@+id/guideline26"
-            app:layout_constraintStart_toStartOf="@+id/guideline22"
-            app:layout_constraintTop_toTopOf="@+id/guideline23" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -219,16 +179,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recViewProductList">
-
-            <TextView
-                android:id="@+id/textSizeProducstsList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:text="21"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -248,7 +198,84 @@
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
                 android:src="@drawable/products" />
+
         </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline28">
+
+            <TextView
+                android:id="@+id/textTotalCostList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="16sp"
+                android:textColor="#111111"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView31" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_weight="1"
+                android:text="No. of Products"
+                android:textColor="#999999"
+                app:layout_constraintBottom_toTopOf="@+id/textSizeProducstsList"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_weight="1"
+                android:text="Price Total"
+                android:textColor="#999999"
+                app:layout_constraintBottom_toTopOf="@+id/textTotalCostList"
+                app:layout_constraintStart_toEndOf="@+id/textView31" />
+
+            <TextView
+                android:id="@+id/textSizeProducstsList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                android:layout_marginBottom="30dp"
+                android:text="21"
+                android:textSize="16sp"
+                android:textColor="#111111"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveList"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:text="Save"
+                android:textAllCaps="false"
+                app:cornerRadius="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/designColor"
+                app:strokeWidth="1dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

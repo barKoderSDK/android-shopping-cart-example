@@ -1,15 +1,18 @@
 package com.example.barkodershopapp.ui.fragments
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -57,6 +60,7 @@ class HomeScreenFragment : Fragment(){
         recViewProduct()
         observeListProduct()
         onBackButton()
+        changeStatusBarColor(ContextCompat.getColor(requireContext(), R.color.backroundDesignColor))
 
         val activity = requireActivity() as AppCompatActivity
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -169,7 +173,16 @@ class HomeScreenFragment : Fragment(){
         productAdapter = null
         btnScan = null
         callback = null
+        changeStatusBarColor(ContextCompat.getColor(requireContext(), R.color.designColor))
 
+    }
+
+    private fun changeStatusBarColor(color: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val window = requireActivity().window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = color
+        }
     }
 
 

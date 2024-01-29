@@ -22,6 +22,9 @@ import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -82,13 +85,13 @@ class AddProductFragment : Fragment() {
 
         nameTextVoice()
         getBarcodeString()
-
+        setHasOptionsMenu(true)
         val activity = requireActivity() as AppCompatActivity
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         activity.supportActionBar?.setDisplayShowHomeEnabled(false)
 
         val toolbar = (activity as? AppCompatActivity)?.findViewById<Toolbar>(R.id.toolBarrr)
-        toolbar?.visibility = View.GONE
+        toolbar?.visibility = View.VISIBLE
 
         savedInstanceState?.let { savedState ->
             binding.editTextNameAddProduct.setText(savedState.getString("textName"))
@@ -113,7 +116,7 @@ class AddProductFragment : Fragment() {
         var prr = widthScreen / 4
 
         val layoutParams = binding.cameraImage.layoutParams
-        layoutParams.height = widthScreen + prr
+        layoutParams.height = widthScreen
         binding.cameraImage.layoutParams = layoutParams
 
         if(thumbnail != null) {
@@ -229,7 +232,7 @@ class AddProductFragment : Fragment() {
                     currentAddProduct.quantityProduct = productQuantity.toInt()
                     currentAddProduct.defultCount = 0
                     currentAddProduct.count = 1
-                    currentAddProduct.priceHistory = arrayListOf(PriceHistory(currentAddProduct.priceProduct.toString() + " $", getCurrentDate(), R.drawable.edit_fill0_wght400_grad0_opsz48))
+                    currentAddProduct.priceHistory = arrayListOf(PriceHistory("$" + currentAddProduct.priceProduct.toString(), getCurrentDate(), R.drawable.edit_fill0_wght400_grad0_opsz48))
                     currentAddProduct.originalImage = arrayListOf(imageOriginal(imagePath!!))
 
 
@@ -461,5 +464,18 @@ class AddProductFragment : Fragment() {
 
         return displayMetrics.widthPixels
     }
+
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val messagesMenuItem = menu.findItem(R.id.searchIcon)
+        val addMenuItem = menu.findItem(R.id.addIcon)
+        val addMenuItem2 = menu.findItem(R.id.addIcon2)
+        messagesMenuItem?.isVisible = false
+        addMenuItem?.isVisible = false
+        addMenuItem2?.isVisible = false
+    }
+
+
 
 }

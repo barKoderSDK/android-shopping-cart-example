@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
@@ -55,6 +56,8 @@ class ListProductsFragment : Fragment() {
     var editMode = this@ListProductsFragment.arguments?.getBoolean("editMode")
     private var updatedProduct : ListDataEntity? = null
     private var totalPrice : Int? = null
+    private var listName : String? = null
+    private var listNameViewModel : String? = null
 
 
     private lateinit var callback: OnBackPressedCallback
@@ -67,12 +70,16 @@ class ListProductsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentListProductsBinding.inflate(inflater, container, false)
+        var selectBack = this@ListProductsFragment.arguments?.getBoolean("selectBack")
 
-
+        setHasOptionsMenu(true)
 
         val activity = requireActivity() as AppCompatActivity
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowHomeEnabled(true)
+
+
+
 
         val view = binding.root
         return view
@@ -81,6 +88,7 @@ class ListProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var editMode = this@ListProductsFragment.arguments?.getBoolean("editMode")
 
         setupRecView()
         observeList()
@@ -91,6 +99,18 @@ class ListProductsFragment : Fragment() {
         onClickButtonUpdate()
         navInvisible()
         onButtonSelect()
+        listName = this@ListProductsFragment.arguments?.getString("listName")
+        if(listName != null) {
+            val sharedPreferences = requireContext().getSharedPreferences("mySharedPreferences", Context.MODE_PRIVATE)
+            val editor = sharedPreferences!!.edit()
+
+            editor.putString("listN", listName)
+            editor.apply()
+        }
+
+        val sharedPreferences = requireContext().getSharedPreferences("mySharedPreferences", Context.MODE_PRIVATE)
+        val storedValue = sharedPreferences.getString("listN", "defaultValue")
+            requireActivity().title = storedValue
 
     }
 
@@ -117,34 +137,34 @@ class ListProductsFragment : Fragment() {
     }
 
     private fun onButtonSelect(){
-        binding.buttonImage.setOnClickListener {
-            var listId = this@ListProductsFragment.arguments?.getLong("currentListId")
-            var checkedDate = this@ListProductsFragment.arguments?.getString("checkedDate").toString()
-            var listName = this@ListProductsFragment.arguments?.getString("listName").toString()
-            var edit = this@ListProductsFragment.arguments?.getBoolean("edit")
-            var editMode = this@ListProductsFragment.arguments?.getBoolean("editMode")
-            if(editMode == true) {
-                var bundle = Bundle()
-                bundle.putBoolean("editSelect", true)
-                bundle.putLong("listId",listId!!)
-                bundle.putString("checkedDate", checkedDate)
-                bundle.putString("listName", listName)
-                findNavController().navigate(
-                    R.id.selectProductFragment,
-                    bundle,
-                    NavOptions.Builder().setPopUpTo(R.id.listProductsFragment, true).build()
-                )
-            } else {
-                var bundle = Bundle()
-                bundle.putBoolean("createSelect", true)
-                bundle.putString("listNameCreate", binding.editTextListName.text.toString())
-                findNavController().navigate(
-                    R.id.selectProductFragment,
-                    bundle,
-                    NavOptions.Builder().setPopUpTo(R.id.listProductsFragment, true).build()
-                )
-            }
-            }
+//        binding.buttonImage.setOnClickListener {
+//            var listId = this@ListProductsFragment.arguments?.getLong("currentListId")
+//            var checkedDate = this@ListProductsFragment.arguments?.getString("checkedDate").toString()
+//            var listName = this@ListProductsFragment.arguments?.getString("listName").toString()
+//            var edit = this@ListProductsFragment.arguments?.getBoolean("edit")
+//            var editMode = this@ListProductsFragment.arguments?.getBoolean("editMode")
+//            if(editMode == true) {
+//                var bundle = Bundle()
+//                bundle.putBoolean("editSelect", true)
+//                bundle.putLong("listId",listId!!)
+//                bundle.putString("checkedDate", checkedDate)
+//                bundle.putString("listName", listName)
+//                findNavController().navigate(
+//                    R.id.selectProductFragment,
+//                    bundle,
+//                    NavOptions.Builder().setPopUpTo(R.id.listProductsFragment, true).build()
+//                )
+//            } else {
+//                var bundle = Bundle()
+//                bundle.putBoolean("createSelect", true)
+//                bundle.putString("listNameCreate", binding.editTextListName.text.toString())
+//                findNavController().navigate(
+//                    R.id.selectProductFragment,
+//                    bundle,
+//                    NavOptions.Builder().setPopUpTo(R.id.listProductsFragment, true).build()
+//                )
+//            }
+//            }
         }
 
     private fun navInvisible(){
@@ -230,8 +250,6 @@ class ListProductsFragment : Fragment() {
         var listId = this@ListProductsFragment.arguments?.getLong("currentListId")
         var checkedDate = this@ListProductsFragment.arguments?.getString("checkedDate").toString()
         binding.btnUpdateList.setOnClickListener {
-            val listName = binding.editTextListName.text.toString()
-            if (listName.isNotEmpty()) {
 
                 productViewModel.allNotes.observe(viewLifecycleOwner, { products ->
                     var array = products as ArrayList<ProductDataEntity>
@@ -246,7 +264,7 @@ class ListProductsFragment : Fragment() {
 
                 listViewModel.allNotes.observe(viewLifecycleOwner, { products4 ->
                     var currentList = HistoryDataEntity(
-                        listName, getCurrentDate(),
+                        requireActivity().title.toString(), getCurrentDate(),
                         sumTotalCostList(products4).toString(),
                         checkedDate!!,
                         false, products4 as ArrayList<ListDataEntity>, listId!!
@@ -260,23 +278,11 @@ class ListProductsFragment : Fragment() {
                     NavOptions.Builder().setPopUpTo(R.id.listProductsFragment, true).build()
                 )
                 Toast.makeText(context, R.string.toast_list_sucessful_updated, Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, R.string.toast_list_name_empty, Toast.LENGTH_SHORT).show()
-            }
         }
     }
 
     private fun onClickButtonAdd() {
-        binding.btnAddNewList.setOnClickListener {
-
-
-
-
-            val listName = binding.editTextListName.text.toString()
-
-
-
-            if (listName.isNotEmpty() && listViewModel.allNotes.value!!.size > 0) {
+        binding.btnSaveList.setOnClickListener {
 
                 productViewModel.allNotes.observe(viewLifecycleOwner, { products ->
                     var array = products as ArrayList<ProductDataEntity>
@@ -290,7 +296,7 @@ class ListProductsFragment : Fragment() {
                 listViewModel.allNotes.observe(viewLifecycleOwner, { products3 ->
                     historyViewModel.insert(
                         HistoryDataEntity(
-                            listName,
+                            requireActivity().title.toString(),
                             getCurrentDate(),
                             sumTotalCostList(products3).toString(),
                             "Not checked yet!",
@@ -308,9 +314,6 @@ class ListProductsFragment : Fragment() {
                 )
 
                 Toast.makeText(context, R.string.toast_list_secesfful_created, Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(context, R.string.toast_list_name_empty, Toast.LENGTH_SHORT).show()
-            }
 
         }
 
@@ -334,15 +337,9 @@ class ListProductsFragment : Fragment() {
         var backUpdate = this@ListProductsFragment.arguments?.getBoolean("backUpdate")
 
         if (editMode == true) {
-            requireActivity().title = requireContext().getString(R.string.updateList)
-            binding.btnAddNewList.visibility = View.INVISIBLE
-            binding.btnUpdateList.visibility = View.VISIBLE
-            binding.editTextListName.setText(listName)
-        } else {
-            requireActivity().title = requireContext().getString(R.string.createList)
-            binding.btnAddNewList.visibility = View.VISIBLE
             binding.btnUpdateList.visibility = View.INVISIBLE
-            binding.editTextListName.setText("")
+        } else {
+            binding.btnUpdateList.visibility = View.INVISIBLE
         }
     }
 
@@ -395,7 +392,7 @@ class ListProductsFragment : Fragment() {
             list.listProducts.totalPrice =
                 list.listProducts.totalPrice + list.listProducts.priceProduct
             totalPrice = totalPrice?.plus(list.listProducts.priceProduct)
-            binding.textTotalCostList.text = "${totalPrice.toString()} $"
+            binding.textTotalCostList.text = "$${totalPrice.toString()}"
             updatedProduct = list
 //            listViewModel.updateItem(list)
         }
@@ -423,12 +420,21 @@ class ListProductsFragment : Fragment() {
         bottomNav.visibility = View.VISIBLE
         var bottomFab = requireActivity().findViewById<FloatingActionButton>(R.id.fabNav)
         bottomFab.visibility = View.VISIBLE
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
         productAdapter = null
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val messagesMenuItem = menu.findItem(R.id.searchIcon)
+        val addMenuItem = menu.findItem(R.id.addIcon)
+        messagesMenuItem?.isVisible = false
+        addMenuItem?.isVisible = false
     }
 
 }

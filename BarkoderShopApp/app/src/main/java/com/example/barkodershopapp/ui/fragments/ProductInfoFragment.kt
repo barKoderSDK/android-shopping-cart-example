@@ -6,10 +6,12 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -42,6 +44,7 @@ class ProductInfoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
 
     }
 
@@ -60,6 +63,9 @@ class ProductInfoFragment : Fragment() {
         val activity = requireActivity() as AppCompatActivity
         activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         activity.supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        val toolbar = (activity as? AppCompatActivity)?.findViewById<Toolbar>(R.id.toolBarrr)
+        toolbar?.visibility = View.VISIBLE
 
         val view = binding.root
         return view
@@ -122,7 +128,7 @@ class ProductInfoFragment : Fragment() {
             } else {
                 R.drawable.arrow_down
             }
-            args.currentProduct.priceHistory.add(PriceHistory(price + " $", getCurrentDate(), arrowResId))
+            args.currentProduct.priceHistory.add(PriceHistory( "$" + price, getCurrentDate(), arrowResId))
 
         }
 
@@ -178,5 +184,15 @@ class ProductInfoFragment : Fragment() {
         super.onDestroyView()
         _binding = null
 
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val messagesMenuItem = menu.findItem(R.id.searchIcon)
+        val addMenuItem = menu.findItem(R.id.addIcon)
+        val addMenuItem2 = menu.findItem(R.id.addIcon2)
+        messagesMenuItem?.isVisible = false
+        addMenuItem?.isVisible = false
+        addMenuItem2?.isVisible = false
     }
 }

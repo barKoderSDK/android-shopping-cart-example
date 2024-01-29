@@ -63,7 +63,7 @@ class HistoryListFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHistoryListBinding.inflate(inflater, container, false)
         requireActivity().title = requireContext().getString(R.string.myLists)
-
+        setHasOptionsMenu(true)
         setupRecView()
         observeList()
         onBackButton()
@@ -212,6 +212,12 @@ class HistoryListFragment : Fragment() {
         btnScan = null
         callback = null
 
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val addMenuItem2 = menu.findItem(R.id.addIcon2)
+        addMenuItem2?.isVisible = false
     }
 
 

@@ -31,10 +31,8 @@ class HistoryAdapter(private var list: List<HistoryDataEntity>, private val cont
 
             if(list.checkedList){
                 binding.checkedDate.text = list.checkedDate
-                binding.imageChecked.visibility = View.VISIBLE
             } else {
                 binding.checkedDate.text = context.getString(R.string.unchecked)
-                    binding.imageChecked.visibility = View.GONE
                 }
         }
     }

@@ -132,6 +132,9 @@
         <action
             android:id="@+id/action_historyListFragment2_to_listProductsFragment"
             app:destination="@id/listProductsFragment" />
+        <action
+            android:id="@+id/action_historyListFragment2_to_dialogListCreate"
+            app:destination="@id/dialogListCreate" />
     </fragment>
     <fragment
         android:id="@+id/homeScreenFragment"
@@ -202,4 +205,13 @@
             android:id="@+id/action_settingsFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/dialogListCreate"
+        android:name="com.example.barkodershopapp.ui.fragments.DialogListCreate"
+        android:label="fragment_dialog_list_create"
+        tools:layout="@layout/fragment_dialog_list_create" >
+        <action
+            android:id="@+id/action_dialogListCreate_to_listProductsFragment"
+            app:destination="@id/listProductsFragment" />
+    </dialog>
 </navigation>
