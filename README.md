@@ -108,3 +108,14 @@ Scan the barcode of each product in the list, and the app will update the status
 "My Products" to manage your products.
 "My Lists" to create list or tap on list to checkout it.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="https://github.com/barKoderSDK/android-shopping-cart-example/assets/156681324/1197a150-447d-402c-a845-9d88366099b2" alt="Home Screen"></td>
+    <td><img src="https://github.com/barKoderSDK/android-shopping-cart-example/assets/156681324/809ff8c6-3d75-4ca4-9dbd-fac45d2d678c" alt="My Lists"></td>
+    <td><img src="https://github.com/barKoderSDK/android-shopping-cart-example/assets/156681324/dc1b2587-06fc-4061-81f5-54f1a70b409e" alt="Chekcout"></td>
+     <td><img src="https://github.com/barKoderSDK/android-shopping-cart-example/assets/156681324/fb37c489-108e-455c-a438-0096cbf032ed" alt="Create Product"></td>
+  </tr>
+</table>
+
